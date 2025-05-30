@@ -8,6 +8,13 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route("/url")
+def url():
+    return render_template("url.html")
+
+@app.route("/wiki")
+def wiki():
+    return render_template("wiki.html")
 # @app.route("/summaryurl", methods=["POST"])
 # def sumurl():
 #     url = request.form['url']

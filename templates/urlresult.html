@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요약 결과</title>
+</head>
+<body>
+    <h1>🔍 요약 결과</h1>
+    <div id="result"></div> 
+
+    <script>
+        const text = `{{ summary | safe }}`;
+        const target=document.getElementById("result");
+        let i = 0;
+
+        function type(){
+            if (i < text.length) {
+                target.textContent += text.charAt(i);
+                i++;
+                setTimeout(type,30);
+            }
+        }
+
+        type();
+    </script>
+</body>
+</html>
