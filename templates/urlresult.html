@@ -3,26 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>요약 결과</title>
+    <title>url 요약 결과</title>
 </head>
 <body>
-    <h1>🔍 요약 결과</h1>
-    <div id="result"></div> 
-
+    <h1>🔗URL 요약 결과</h1>
+    {%if safe%}
+    <div id="result" data-summary="{{ summary | safe}}"></div>
     <script>
-        const text = `{{ summary | safe }}`;
-        const target=document.getElementById("result");
-        let i = 0;
-
-        function type(){
-            if (i < text.length) {
+        const raw = document.getElementById("result").dataset.summary;
+        const text =raw.replace(/\\n/g, "\n");
+        const target = document.getElementById("result");
+        let i=0;
+        function type()
+        {
+            if (i<text.length)
+            {
                 target.textContent += text.charAt(i);
                 i++;
-                setTimeout(type,30);
+                setTimeout(type,20);
             }
         }
-
+        target.textContent="";
         type();
     </script>
+    {%else%}
+    <script>
+        const warn=confirm("이 사이트는 안전하지 않을 수 있습니다.\n계속 진행 하시겠습니까?");
+        if (warn)
+        {
+            const form = document.createElement("form");
+            form.method="POST";
+            form.action="/force_summaryurl";
+            const input = document.createElement("input");
+            input.type="hidden";
+            input.name="url";
+            input.value="{{url}}";
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+        }
+        else
+        {
+            alert("취소 되었습니다.");
+            window.location.href="/url";
+        }
+    </script>
+    {%endif%}
 </body>
 </html>

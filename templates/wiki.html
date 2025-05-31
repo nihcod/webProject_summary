@@ -8,9 +8,14 @@
 <body>
     <h1>검색어를 입력해 주세요! refer to wikipedia..</h1><hr>
     <form action="/summarywiki" method="POST">
-        <input type="text" name="url" placeholder="검색어를 입력해 주세요."/>
+        <input type="text" name="keyword" placeholder="검색어를 입력해 주세요."/>
         <input type="submit" value="제출"/>
     </form>
-    <a href="/">메인으로</a>
+    <div style="margin-top: 30px;">
+        <p>메인 화면으로 돌아가시겠습니까?</p>
+        <a href="/">
+            <button>메인으로</button>
+        </a>
+    </div>
 </body>
 </html>
