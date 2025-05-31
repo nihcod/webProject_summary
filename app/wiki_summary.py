@@ -1,6 +1,6 @@
 import wikipedia
 from urllib.parse import quote
-def summarize_wikipedia(keyword, lang='ko', max_sentences=5):
+def summarize_wikipedia(keyword, lang='ko', max_sentences=8):
     wikipedia.set_lang(lang)
 
     try:
@@ -19,7 +19,7 @@ def summarize_wikipedia(keyword, lang='ko', max_sentences=5):
     except Exception as e:
         return f"알 수 없는 오류가 발생 하였습니다.: {str(e)}"
     
-def force_summary(keyword, lang='ko', max_sentences=5):
+def force_summary(keyword, lang='ko', max_sentences=8):
     wikipedia.set_lang(lang)
     
     try:
